@@ -8,7 +8,9 @@ public class Game
     
     private readonly double _outcomeCount = Math.Pow(6, 6);
 
-    /* Public static methods */
+    /* Public instance methods */
+
+    public IEnumerable<int> CreateGame(Random random) => Enumerable.Range(0, 6).Select(x => random.Next(1, 7));
 
     public IEnumerable<Market> GenerateMarkets() => new[]
     {
