@@ -1,0 +1,19 @@
+MARKET - SELECTIONS
+-------------------
+GWMatch6 - yes/no
+GWMatch5 - yes/no
+GWMatch4 - yes/no
+GWMatch3 - yes/no
+GWMatch2 - yes/no
+GWMatch1 - yes/no
+
+GWSameTrap5 - yes/no (6 included)
+GWSameTrap4 - yes/no
+GWSameTrap3 - yes/no
+GWSameTrap2 - yes/no
+
+GWHighLow - high/low/equal (I note there is no "equal" in Andrew's probabilities document)
+GWOddEven - odd/even/equal
+
+GWTrapMost - none/1/2/3/4/5/6
+GWTrapMostAny - none/any
