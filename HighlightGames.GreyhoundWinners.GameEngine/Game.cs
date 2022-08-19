@@ -50,12 +50,12 @@ public class Game
 
     private Market CreateMatchMarket() => new Market("GWMatch", new Dictionary<string, double>
     {
-        ["6"] = Math.Pow(6, 0) * 1 / _outcomeCount,
-        ["5"] = Math.Pow(6, 1) * 2 / _outcomeCount,
-        ["4"] = Math.Pow(6, 2) * 3 / _outcomeCount,
-        ["3"] = Math.Pow(6, 3) * 4 / _outcomeCount,
-        ["2"] = Math.Pow(6, 4) * 5 / _outcomeCount,
-        ["1"] = Math.Pow(5, 6) / _outcomeCount,
+        ["6"] = 1 / _outcomeCount,
+        ["5"] = 10 / _outcomeCount,
+        ["4"] = 85 / _outcomeCount,
+        ["3"] = 660 / _outcomeCount,
+        ["2"] = 4860 / _outcomeCount,
+        ["1"] = 34560 / _outcomeCount,
     });
 
     private Market CreateOddEvenMarket()
