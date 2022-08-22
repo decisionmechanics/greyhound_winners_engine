@@ -10,10 +10,11 @@ public class Game
 
     /* Public instance methods */
 
-    public IEnumerable<int> CreateGame(Random random) => Enumerable.Range(0, 6).Select(x => random.Next(1, 7));
+    public IEnumerable<int> CreateGame(Random random) => Enumerable.Range(0, 6).Select(_ => random.Next(1, 7));
 
     public IEnumerable<Market> GenerateMarkets() => new[]
     {
+        CreateRaceMarket(),
         CreateMatchMarket(),
         CreateSameTrapMarket(),
         CreateHighLowMarket(),
@@ -75,7 +76,22 @@ public class Game
             ["Equal"] = equalProbability,
         });
     }
-    
+
+    private Market CreateRaceMarket()
+    {
+        double probability = 1.0 / 6.0;
+        
+        return new Market("GWRace", new Dictionary<string, double>
+        {
+            ["1"] = probability,
+            ["2"] = probability,
+            ["3"] = probability,
+            ["4"] = probability,
+            ["5"] = probability,
+            ["6"] = probability,
+        });
+    }
+
     private Market CreateSameTrapMarket() => new Market("GWSameTrap", new Dictionary<string, double>
     {
         ["5+"] = (Math.Pow(6, 0) * 1 + Math.Pow(6, 1) * 2) / _outcomeCount,
