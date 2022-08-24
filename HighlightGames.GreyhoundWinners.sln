@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighlightGames.GreyhoundWin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighlightGames.GreyhoundWinners.MarketDumper", "HighlightGames.GreyhoundWinners.MarketDumper\HighlightGames.GreyhoundWinners.MarketDumper.csproj", "{476F32FD-FDFA-43E9-919E-BE010AAAFF01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighlightGames.GreyhoundWinners.ReturnsSimulator", "HighlightGames.GreyhoundWinners.ReturnsSimulator\HighlightGames.GreyhoundWinners.ReturnsSimulator.csproj", "{78423987-2D42-4E1B-9417-656A80715827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{476F32FD-FDFA-43E9-919E-BE010AAAFF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476F32FD-FDFA-43E9-919E-BE010AAAFF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{476F32FD-FDFA-43E9-919E-BE010AAAFF01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78423987-2D42-4E1B-9417-656A80715827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78423987-2D42-4E1B-9417-656A80715827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78423987-2D42-4E1B-9417-656A80715827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78423987-2D42-4E1B-9417-656A80715827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

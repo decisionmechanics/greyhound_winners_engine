@@ -105,7 +105,6 @@ public class Game
         ["4"] = CalculateFairPrice(Math.Pow(6, 2) * 3 / _outcomeCount),
         ["3"] = CalculateFairPrice(Math.Pow(6, 3) * 4 / _outcomeCount),
         ["2"] = CalculateFairPrice(Math.Pow(6, 4) * 5 / _outcomeCount),
-        ["1"] = CalculateFairPrice(Math.Pow(5, 6) / _outcomeCount),
     });
 
     private Market CreateTrapMostAnyMarket()
