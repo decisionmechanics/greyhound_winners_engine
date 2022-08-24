@@ -4,7 +4,14 @@ using MathNet.Numerics.Random;
 
 using HighlightGames.GreyhoundWinners.GameEngine;
 
-const int iterations = 10_000_000;
+if (args.Length != 1)
+{
+    Console.WriteLine("Usage: <iterations>");
+    
+    Environment.Exit(1);
+}
+
+int iterations = int.Parse(args[0]);
 
 Console.WriteLine($"{iterations} iterations");
 
