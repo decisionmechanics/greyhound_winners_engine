@@ -24,8 +24,8 @@ public class Game
         CreateHighLowMarket(),
         CreateOddEvenMarket(),
         CreateTrapMostMarket(),
-        CreateTrapMostAnyMarket()
-    };
+        CreateTrapMostAnyMarket(),
+    }.Concat(CreateTrapTotalMarkets());
 
     /* Private static methods */
 
@@ -133,5 +133,65 @@ public class Game
         }
 
         return new Market("GWTrapMost", selectionFairPrices);
+    }
+
+    private IEnumerable<Market> CreateTrapTotalMarkets()
+    {
+        var exactMarket = new Market("GWTrapTotalExact", new Dictionary<string, double>
+        {
+            ["6"] = CalculateFairPrice(1 / _outcomeCount),
+            ["7"] = CalculateFairPrice(6 / _outcomeCount),
+            ["8"] = CalculateFairPrice(21 / _outcomeCount),
+            ["9"] = CalculateFairPrice(56 / _outcomeCount),
+            ["10"] = CalculateFairPrice(126 / _outcomeCount),
+            ["11"] = CalculateFairPrice(252 / _outcomeCount),
+            ["12"] = CalculateFairPrice(456 / _outcomeCount),
+            ["13"] = CalculateFairPrice(756 / _outcomeCount),
+            ["14"] = CalculateFairPrice(1161 / _outcomeCount),
+            ["15"] = CalculateFairPrice(1666 / _outcomeCount),
+            ["16"] = CalculateFairPrice(2247 / _outcomeCount),
+            ["17"] = CalculateFairPrice(2856 / _outcomeCount),
+            ["18"] = CalculateFairPrice(3431 / _outcomeCount),
+            ["19"] = CalculateFairPrice(3906 / _outcomeCount),
+            ["20"] = CalculateFairPrice(4221 / _outcomeCount),
+            ["21"] = CalculateFairPrice(4332 / _outcomeCount),
+            ["22"] = CalculateFairPrice(4221 / _outcomeCount),
+            ["23"] = CalculateFairPrice(3906 / _outcomeCount),
+            ["24"] = CalculateFairPrice(3431 / _outcomeCount),
+            ["25"] = CalculateFairPrice(2856 / _outcomeCount),
+            ["26"] = CalculateFairPrice(2247 / _outcomeCount),
+            ["27"] = CalculateFairPrice(1666 / _outcomeCount),
+            ["28"] = CalculateFairPrice(1161 / _outcomeCount),
+            ["29"] = CalculateFairPrice(756 / _outcomeCount),
+            ["30"] = CalculateFairPrice(456 / _outcomeCount),
+            ["31"] = CalculateFairPrice(252 / _outcomeCount),
+            ["32"] = CalculateFairPrice(126 / _outcomeCount),
+            ["33"] = CalculateFairPrice(56 / _outcomeCount),
+            ["34"] = CalculateFairPrice(21 / _outcomeCount),
+            ["35"] = CalculateFairPrice(6 / _outcomeCount),
+            ["36"] = CalculateFairPrice(1 / _outcomeCount),
+        });
+
+        var oddEvenMarket = new Market("GWTrapTotalOddEven", new Dictionary<string, double>
+        {
+            ["Odd"] = CalculateFairPrice(23328 / _outcomeCount),
+            ["Even"] = CalculateFairPrice(23328 / _outcomeCount),
+        });
+
+        var primeMarket = new Market("GWTrapTotalPrime", new Dictionary<string, double>
+        {
+            ["Yes"] = CalculateFairPrice(12690 / _outcomeCount),
+            ["No"] = CalculateFairPrice(33966 / _outcomeCount),
+        });
+
+        var rangeMarket = new Market("GWTrapTotalRange", new Dictionary<string, double>
+        {
+            ["6"] = CalculateFairPrice(1 / _outcomeCount),
+            ["7-16"] = CalculateFairPrice(6747 / _outcomeCount),
+            ["17-26"] = CalculateFairPrice(35407 / _outcomeCount),
+            ["27-36"] = CalculateFairPrice(4501 / _outcomeCount),
+        });
+
+        return new[] { exactMarket, oddEvenMarket, primeMarket, rangeMarket };
     }
 }
