@@ -14,6 +14,7 @@ namespace GreyhoundWinners.CompleteResults
 
             FileStream stream = File.OpenWrite(outputFile);
             StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine("result,highLow,oddEven,match123456_3,match333333_2,sameTrap14,sameTrap23,sameTrap36,trapMost,trapMostAny,trapTotalExact,traptotaloddeven,traptotalPrime,traptotalRange");
 #endif
             int lineCount = 0;
             for (int one = 1; one <= 6; one++)
