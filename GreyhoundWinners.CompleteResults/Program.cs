@@ -1,4 +1,6 @@
-﻿using HighlightGames.GreyhoundWinners.GameEngine;
+﻿#define WRITE_RESULTS
+
+using HighlightGames.GreyhoundWinners.GameEngine;
 
 namespace GreyhoundWinners.CompleteResults
 {
@@ -12,6 +14,7 @@ namespace GreyhoundWinners.CompleteResults
 
             FileStream stream = File.OpenWrite(outputFile);
             StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine("result,highLow,oddEven,match123456_3,match333333_2,sameTrap14,sameTrap23,sameTrap36,trapMost,trapMostAny,trapTotalExact,traptotaloddeven,traptotalPrime,traptotalRange");
 #endif
             int lineCount = 0;
             for (int one = 1; one <= 6; one++)
@@ -41,13 +44,17 @@ namespace GreyhoundWinners.CompleteResults
                     }
                 }
             }
+#if WRITE_RESULTS
+            writer.Flush();
+#endif
         }
+
         static string Settle(int[] result)
         {
             string highLow = Settler.SettleHighLowMarket(result);
             string oddEven = Settler.SettleOddEvenMarket(result);
-            int match234_5 = Settler.SettleMatchMarket(new int[] { 2, 3, 4 }, 3, result);
-            int match345_5 = Settler.SettleMatchMarket(new int[] { 3, 4, 5 }, 2, result);
+            int match123456_3 = Settler.SettleMatchMarket(new int[] { 1, 2, 3, 4, 5, 6 }, 3, result);
+            int match333333_2 = Settler.SettleMatchMarket(new int[] { 3, 3, 3, 3, 3, 3 }, 2, result);
             int sameTrap14 = Settler.SettleSameTrapMarket(1, 4, result);
             int sameTrap23 = Settler.SettleSameTrapMarket(2, 3, result);
             int sameTrap36 = Settler.SettleSameTrapMarket(3, 6, result);
@@ -59,7 +66,7 @@ namespace GreyhoundWinners.CompleteResults
             string traptotalRange = Settler.SettleTrapTotalRangeMarket(result);
 
 
-            return $"{string.Join("-", result.Select(x => x.ToString()))},{highLow},{oddEven},{match234_5},{match345_5},{sameTrap14},{sameTrap23},{sameTrap36},{trapMost},{trapMostAny},{trapTotalExact},{traptotaloddeven},{traptotalPrime},{traptotalRange}";
+            return $"{string.Join("-", result.Select(x => x.ToString()))},{highLow},{oddEven},{match123456_3},{match333333_2},{sameTrap14},{sameTrap23},{sameTrap36},{trapMost},{trapMostAny},{trapTotalExact},{traptotaloddeven},{traptotalPrime},{traptotalRange}";
         }
     }
 }
