@@ -19,6 +19,8 @@ var game = new Game();
 int[] selectedTraps = game.CreateGame(random).ToArray();
 int selectedTrap = 1;
 
+IDictionary<string, decimal> catchAMatchMarketReturns = Enumerable.Range(2, 5).ToDictionary(x => x.ToString(), _ => 0m);
+
 IDictionary<string, decimal> matchMarketReturns = Enumerable.Range(1, 6).ToDictionary(x => x.ToString(), _ => 0m);
 
 IDictionary<string, decimal> sameTrapMarketReturns = new Dictionary<string, decimal>
@@ -121,7 +123,6 @@ for (int iteration = 0; iteration < iterations; iteration++)
         
         sameTrapMarketReturns[selection] += Settler.SettleSameTrapMarket(selectedTrap, matchLength, result);
     }
-
     
     highLowMarketReturns[Settler.SettleHighLowMarket(result)] += 1;
     oddEvenMarketReturns[Settler.SettleOddEvenMarket(result)] += 1;
@@ -132,6 +133,11 @@ for (int iteration = 0; iteration < iterations; iteration++)
     trapTotalOddEvenMarketReturns[Settler.SettleTrapTotalOddEvenMarket(result)] += 1;
     trapTotalPrimeMarketReturns[Settler.SettleTrapTotalPrimeMarket(result)] += 1;
     trapTotalRangeMarketReturns[Settler.SettleTrapTotalRangeMarket(result)] += 1;
+    
+    for (int matchLength = 2; matchLength <= 6; matchLength++)
+    {
+        catchAMatchMarketReturns[matchLength.ToString()] += Settler.SettleCatchAMatchMarket(selectedTraps.Take(matchLength).ToArray(), result);
+    }
 }
 
 IEnumerable<Market> markets = game.GenerateMarkets().ToList();
@@ -146,8 +152,9 @@ Market trapTotalExactMarket = markets.Single(x => x.name == "GWTrapTotalExact");
 Market trapTotalOddEvenMarket = markets.Single(x => x.name == "GWTrapTotalOddEven");
 Market trapTotalPrimeMarket = markets.Single(x => x.name == "GWTrapTotalPrime");
 Market trapTotalRangeMarket = markets.Single(x => x.name == "GWTrapTotalRange");
+Market catchAMatchMarket = markets.Single(x => x.name == "GWCatchAMatch");
 
-Console.WriteLine(JsonSerializer.Serialize(new { iterations = iterations}));
+Console.WriteLine(JsonSerializer.Serialize(new { iterations}));
 
 foreach (string selection in matchMarketReturns.Keys)
 {
@@ -218,3 +225,10 @@ foreach (string selection in trapTotalRangeMarketReturns.Keys)
 }
 
 Console.WriteLine(JsonSerializer.Serialize(trapTotalRangeMarketReturns));
+
+foreach (string selection in catchAMatchMarketReturns.Keys)
+{
+    catchAMatchMarketReturns[selection] *= (decimal)catchAMatchMarket.selectionFairPrices[selection] / iterations;
+}
+
+Console.WriteLine(JsonSerializer.Serialize(catchAMatchMarketReturns));

@@ -7,4 +7,8 @@
         <AssemblyVersion>1.0.3.0</AssemblyVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="morelinq" Version="3.3.2" />
+    </ItemGroup>
+
 </Project>

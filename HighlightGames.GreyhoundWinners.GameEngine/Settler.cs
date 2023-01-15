@@ -1,9 +1,32 @@
 namespace HighlightGames.GreyhoundWinners.GameEngine;
 
+using MoreLinq.Extensions;
+
 public static class Settler
 {
     /* Public static methods */
 
+    public static int SettleCatchAMatchMarket(int[] selection, int[] result)
+    {
+        IEnumerable<IList<int>> selectionPremutations = selection.Permutations().ToList();
+        IEnumerable<IList<int>> potentialOutcomes = result.Combinations(selection.Length).ToList();
+
+        int winningLines = 0;
+
+        foreach (IList<int> selectionPermutation in selectionPremutations)
+        {
+            foreach (IEnumerable<int> potentialOutcome in potentialOutcomes)
+            {
+                if (selectionPermutation.SequenceEqual(potentialOutcome))
+                {
+                    winningLines++;
+                }
+            }
+        }
+        
+        return winningLines;
+    }
+    
     public static string SettleHighLowMarket(int[] result)
     {
         int highTrapCount = result.Count(x => x >= 4);
