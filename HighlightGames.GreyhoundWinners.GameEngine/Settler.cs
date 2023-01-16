@@ -8,25 +8,23 @@ public static class Settler
 
     public static int SettleCatchAMatchMarket(int[] selection, int[] result)
     {
-        IEnumerable<IList<int>> selectionPremutations = selection.Permutations().ToList();
-        IEnumerable<IList<int>> potentialOutcomes = result.Combinations(selection.Length).ToList();
+        IEnumerable<int> selection_  = selection.OrderBy(x => x).ToList();
+
+        IEnumerable<IList<int>> potentialOutcomes = result.Combinations(selection.Length).Select(x => x.OrderBy(y => y).ToList()).ToList();
 
         int winningLines = 0;
 
-        foreach (IList<int> selectionPermutation in selectionPremutations)
+        foreach (IEnumerable<int> potentialOutcome in potentialOutcomes)
         {
-            foreach (IEnumerable<int> potentialOutcome in potentialOutcomes)
+            if (selection_.SequenceEqual(potentialOutcome))
             {
-                if (selectionPermutation.SequenceEqual(potentialOutcome))
-                {
-                    winningLines++;
-                }
+                winningLines++;
             }
         }
-        
+
         return winningLines;
     }
-    
+
     public static string SettleHighLowMarket(int[] result)
     {
         int highTrapCount = result.Count(x => x >= 4);

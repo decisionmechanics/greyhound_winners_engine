@@ -3,6 +3,7 @@
 using MathNet.Numerics.Random;
 
 using HighlightGames.GreyhoundWinners.GameEngine;
+using MoreLinq.Extensions;
 
 if (args.Length != 1)
 {
@@ -136,7 +137,7 @@ for (int iteration = 0; iteration < iterations; iteration++)
     
     for (int matchLength = 2; matchLength <= 6; matchLength++)
     {
-        catchAMatchMarketReturns[matchLength.ToString()] += Settler.SettleCatchAMatchMarket(selectedTraps.Take(matchLength).ToArray(), result);
+        catchAMatchMarketReturns[matchLength.ToString()] += Settler.SettleCatchAMatchMarket(new[] { 1, 2, 3, 4, 5, 6}.Shuffle().Take(matchLength).ToArray(), result);
     }
 }
 
