@@ -25,8 +25,8 @@ public class Game
         CreateOddEvenMarket(),
         CreateTrapMostMarket(),
         CreateTrapMostAnyMarket(),
-        CreateCatchAMatchMarket()
-    }.Concat(CreateTrapTotalMarkets());
+
+    }.Concat(CreateTrapTotalMarkets()).Concat(CreateCatchAMatchMarkets());
 
     /* Private static methods */
 
@@ -40,14 +40,16 @@ public class Game
 
     /* Private instance methods */
 
-    private Market CreateCatchAMatchMarket() => new Market(
-        "GWCatchAMatch",
-        Enumerable.Range(2, 5).ToDictionary(
-            x => x.ToString(),
-            x => CalculateFairPrice(CalculatePermutations(6, x) * Math.Pow(6, -x))
-        )
+    private Market CreateCatchAMatchMarket(int n) => new Market(
+        $"GWCatchAMatch{n}",
+        new Dictionary<string, double>
+        {
+            ["1"] = CalculateFairPrice(CalculatePermutations(6, n) * Math.Pow(6, -n))
+        }
     );
 
+    private IEnumerable<Market> CreateCatchAMatchMarkets() => Enumerable.Range(2, 5).Select(CreateCatchAMatchMarket).ToList();
+    
     private Market CreateHighLowMarket()
     {
         var highOutcomeCount = 

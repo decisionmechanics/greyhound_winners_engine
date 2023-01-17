@@ -7,7 +7,7 @@ using MoreLinq.Extensions;
 
 if (args.Length != 1)
 {
-    Console.WriteLine("Usage: <iterations>");
+    Console.WriteLine("Usage: [<iterations> (default 100,000)]");
     
     Environment.Exit(1);
 }
@@ -19,8 +19,6 @@ var game = new Game();
 
 int[] selectedTraps = game.CreateGame(random).ToArray();
 int selectedTrap = 1;
-
-IDictionary<string, decimal> catchAMatchMarketReturns = Enumerable.Range(2, 5).ToDictionary(x => x.ToString(), _ => 0m);
 
 IDictionary<string, decimal> matchMarketReturns = Enumerable.Range(1, 6).ToDictionary(x => x.ToString(), _ => 0m);
 
@@ -109,6 +107,8 @@ IDictionary<string, decimal> trapTotalRangeMarketReturns = new Dictionary<string
     ["27-36"] = 0,
 };
 
+IDictionary<string, decimal> catchAMatchMarketReturns = Enumerable.Range(2, 5).ToDictionary(x => x.ToString(), _ => 0m);
+
 for (int iteration = 0; iteration < iterations; iteration++)
 {
     int[] result = game.CreateGame(random).ToArray();
@@ -153,7 +153,10 @@ Market trapTotalExactMarket = markets.Single(x => x.name == "GWTrapTotalExact");
 Market trapTotalOddEvenMarket = markets.Single(x => x.name == "GWTrapTotalOddEven");
 Market trapTotalPrimeMarket = markets.Single(x => x.name == "GWTrapTotalPrime");
 Market trapTotalRangeMarket = markets.Single(x => x.name == "GWTrapTotalRange");
-Market catchAMatchMarket = markets.Single(x => x.name == "GWCatchAMatch");
+IDictionary<string, Market> catchAMatchMarkets = Enumerable.Range(2, 5).ToDictionary(
+    x => x.ToString(),
+    x => markets.Single(y => y.name == $"GWCatchAMatch{x}")
+);
 
 Console.WriteLine(JsonSerializer.Serialize(new { iterations}));
 
@@ -229,7 +232,7 @@ Console.WriteLine(JsonSerializer.Serialize(trapTotalRangeMarketReturns));
 
 foreach (string selection in catchAMatchMarketReturns.Keys)
 {
-    catchAMatchMarketReturns[selection] *= (decimal)catchAMatchMarket.selectionFairPrices[selection] / iterations;
+    catchAMatchMarketReturns[selection] *= (decimal)catchAMatchMarkets[selection].selectionFairPrices["1"] / iterations;
 }
 
 Console.WriteLine(JsonSerializer.Serialize(catchAMatchMarketReturns));
