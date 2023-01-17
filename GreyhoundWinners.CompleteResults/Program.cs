@@ -10,7 +10,7 @@ namespace GreyhoundWinners.CompleteResults
         {
 #if WRITE_RESULTS
             string outputFile = @"C:\ABetA\GameEngineGw\complete-results.csv";
-            Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
+            Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? "");
 
             FileStream stream = File.OpenWrite(outputFile);
             StreamWriter writer = new StreamWriter(stream);
