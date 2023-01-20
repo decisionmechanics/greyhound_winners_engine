@@ -111,12 +111,12 @@ public class Game
         })
         : new Market("GWPlayYourDogsRightWithInsurance", new Dictionary<string, double>
         {
-            ["0"] = CalculateFairPrice(0.4166666666666667),
-            ["1"] = CalculateFairPrice(0.6481481481481481),
+            ["0"] = CalculateFairPrice(0.4444444444444444),
+            ["1"] = CalculateFairPrice(0.4722222222222222),
             ["2"] = CalculateFairPrice(0.2762345679012346),
-            ["3"] = CalculateFairPrice(0.17849794238683128),
-            ["4"] = CalculateFairPrice(0.10525977366255145),
-            ["5"] = CalculateFairPrice(0.07085905349794239),
+            ["3"] = CalculateFairPrice(0.1720679012345679),
+            ["4"] = CalculateFairPrice(0.10300925925925926),
+            ["5"] = CalculateFairPrice(0.06903720850480109),
             ["6"] = CalculateFairPrice(0.03853737997256516)
         });
 

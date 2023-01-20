@@ -98,7 +98,7 @@ public static class Settler
 
             if (i == 0)
             {
-                correct = (selection[i] == 'H' && result[i] >= 4) || (selection[i] == 'L' && result[i] <= 3);
+                correct = (selection[0] == 'H' && result[0] >= 4) || (selection[0] == 'L' && result[0] <= 3);
             }
             else
             {
@@ -109,7 +109,7 @@ public static class Settler
             {
                 matchingSequenceLength++;
             }
-            else if ((i == 0 || result[i] == previousTrap) && insurance)
+            else if (insurance && ((i == 0 && (result[0] == 3 || result[0] == 4)) || result[i] == previousTrap))
             {
                 insurance = false;
             }
