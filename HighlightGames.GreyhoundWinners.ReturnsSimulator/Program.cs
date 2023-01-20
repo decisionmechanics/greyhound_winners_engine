@@ -7,7 +7,7 @@ using MoreLinq.Extensions;
 
 if (args.Length != 1)
 {
-    Console.WriteLine("Usage: [<iterations> (default 100,000)]");
+    Console.WriteLine("Usage: [<iterations>]");
     
     Environment.Exit(1);
 }
@@ -109,6 +109,17 @@ IDictionary<string, decimal> trapTotalRangeMarketReturns = new Dictionary<string
 
 IDictionary<string, decimal> catchAMatchMarketReturns = Enumerable.Range(2, 5).ToDictionary(x => x.ToString(), _ => 0m);
 
+IDictionary<string, decimal> playYourDogsRightWithoutInsuranceMarketReturns = new Dictionary<string, decimal>
+{
+    ["0"] = 0,
+    ["1"] = 0,
+    ["2"] = 0,
+    ["3"] = 0,
+    ["4"] = 0,
+    ["5"] = 0,
+    ["6"] = 0,
+};
+
 for (int iteration = 0; iteration < iterations; iteration++)
 {
     int[] result = game.CreateGame(random).ToArray();
@@ -139,6 +150,9 @@ for (int iteration = 0; iteration < iterations; iteration++)
     {
         catchAMatchMarketReturns[matchLength.ToString()] += Settler.SettleCatchAMatchMarket(new[] { 1, 2, 3, 4, 5, 6}.Shuffle().Take(matchLength).ToArray(), result);
     }
+
+    char[] playYourDogsRightSelection = Enumerable.Range(0, 6).Select(_ => random.NextInt64(2) == 0 ? 'H' : 'L').ToArray();
+    playYourDogsRightWithoutInsuranceMarketReturns[Settler.SettlePlayYourDogsRightMarket(playYourDogsRightSelection, result, false).ToString()] += 1;
 }
 
 IEnumerable<Market> markets = game.GenerateMarkets().ToList();
@@ -157,6 +171,8 @@ IDictionary<string, Market> catchAMatchMarkets = Enumerable.Range(2, 5).ToDictio
     x => x.ToString(),
     x => markets.Single(y => y.name == $"GWCatchAMatch{x}")
 );
+Market playYourDogsRightWithoutInsuranceMarket = markets.Single(x => x.name == "GWPlayYourDogsRightWithoutInsurance");
+
 
 Console.WriteLine(JsonSerializer.Serialize(new { iterations}));
 
@@ -236,3 +252,10 @@ foreach (string selection in catchAMatchMarketReturns.Keys)
 }
 
 Console.WriteLine(JsonSerializer.Serialize(catchAMatchMarketReturns));
+
+foreach (string selection in playYourDogsRightWithoutInsuranceMarketReturns.Keys)
+{
+    playYourDogsRightWithoutInsuranceMarketReturns[selection] *= (decimal)playYourDogsRightWithoutInsuranceMarket.selectionFairPrices[selection] / iterations;
+}
+
+Console.WriteLine(JsonSerializer.Serialize(playYourDogsRightWithoutInsuranceMarketReturns));

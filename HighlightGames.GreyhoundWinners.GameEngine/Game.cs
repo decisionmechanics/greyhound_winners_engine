@@ -25,6 +25,8 @@ public class Game
         CreateOddEvenMarket(),
         CreateTrapMostMarket(),
         CreateTrapMostAnyMarket(),
+        CreatePlayYourDogsRightMarket(false),
+        CreatePlayYourDogsRightMarket(true),
 
     }.Concat(CreateTrapTotalMarkets()).Concat(CreateCatchAMatchMarkets());
 
@@ -95,6 +97,28 @@ public class Game
             ["Equal"] = CalculateFairPrice(equalProbability)
         });
     }
+
+    private Market CreatePlayYourDogsRightMarket(bool insurance) => !insurance
+        ? new Market("GWPlayYourDogsRightWithoutInsurance", new Dictionary<string, double>
+        {
+            ["0"] = CalculateFairPrice(0.5),
+            ["1"] = CalculateFairPrice(0.4166666666666667),
+            ["2"] = CalculateFairPrice(0.24537037037037038),
+            ["3"] = CalculateFairPrice(0.14429012345679013),
+            ["4"] = CalculateFairPrice(0.08449074074074074),
+            ["5"] = CalculateFairPrice(0.04948988340192044),
+            ["6"] = CalculateFairPrice(0.03853737997256516)
+        })
+        : new Market("GWPlayYourDogsRightWithInsurance", new Dictionary<string, double>
+        {
+            ["0"] = CalculateFairPrice(0.4166666666666667),
+            ["1"] = CalculateFairPrice(0.6481481481481481),
+            ["2"] = CalculateFairPrice(0.2762345679012346),
+            ["3"] = CalculateFairPrice(0.17849794238683128),
+            ["4"] = CalculateFairPrice(0.10525977366255145),
+            ["5"] = CalculateFairPrice(0.07085905349794239),
+            ["6"] = CalculateFairPrice(0.03853737997256516)
+        });
 
     private Market CreateRaceMarket()
     {

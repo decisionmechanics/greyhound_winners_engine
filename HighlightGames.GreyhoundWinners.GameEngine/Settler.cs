@@ -1,14 +1,12 @@
 namespace HighlightGames.GreyhoundWinners.GameEngine;
 
-using MoreLinq.Extensions;
-
 public static class Settler
 {
     /* Public static methods */
 
     public static int SettleCatchAMatchMarket(int[] selection, int[] result)
     {
-        IEnumerable<int> selection_  = selection.OrderBy(x => x).ToList();
+        selection = selection.OrderBy(x => x).ToArray();
 
         IEnumerable<IList<int>> potentialOutcomes = result.Combinations(selection.Length).Select(x => x.OrderBy(y => y).ToList()).ToList();
 
@@ -16,7 +14,7 @@ public static class Settler
 
         foreach (IEnumerable<int> potentialOutcome in potentialOutcomes)
         {
-            if (selection_.SequenceEqual(potentialOutcome))
+            if (selection.SequenceEqual(potentialOutcome))
             {
                 winningLines++;
             }
@@ -86,6 +84,44 @@ public static class Settler
         }
 
         return matches;
+    }
+
+    public static int SettlePlayYourDogsRightMarket(char[] selection, int[] result, bool insurance)
+    {
+        int matchingSequenceLength = 0;
+
+        int previousTrap = -1;
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            bool correct;
+
+            if (i == 0)
+            {
+                correct = (selection[i] == 'H' && result[i] >= 4) || (selection[i] == 'L' && result[i] <= 3);
+            }
+            else
+            {
+                correct = (selection[i] == 'H' && result[i] > previousTrap) || (selection[i] == 'L' && result[i] < previousTrap);
+            }
+
+            if (correct)
+            {
+                matchingSequenceLength++;
+            }
+            else if ((i == 0 || result[i] == previousTrap) && insurance)
+            {
+                insurance = false;
+            }
+            else
+            {
+                break;
+            }
+
+            previousTrap = result[i];
+        }
+
+        return matchingSequenceLength;
     }
 
     public static int SettleSameTrapMarket(int trap, int selection, int[] result)
