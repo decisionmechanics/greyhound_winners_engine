@@ -159,6 +159,13 @@ public static class Settler
     }
 
     public static string SettleTrapMostAnyMarket(int[] result) => SettleTrapMostMarket(result) == null ? "None" : "Any";
+    public static string SettleTrapMostAnyMarketValue(int[] result)
+    {
+        var most = SettleTrapMostMarket(result);
+        if (most == null)
+            return "None";
+        return most.ToString();
+    }
 
     public static string SettleTrapTotalExactMarket(int[] result) => result.Sum().ToString();
 
