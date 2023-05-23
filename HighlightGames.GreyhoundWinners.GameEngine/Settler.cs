@@ -171,7 +171,7 @@ public static class Settler
 
     public static string SettleTrapTotalOddEvenMarket(int[] result) => result.Sum() % 2 == 1 ? "Odd" : "Even";
 
-    public static string SettleTrapTotalPrimeMarket(int[] result) => new[] { 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(result.Sum()) ? "Yes" : "No";
+    public static string SettleTrapTotalPrimeMarket(int[] result) => new[] { 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(result.Sum()) ? "Prime" : "Not Prime";
 
     public static string SettleTrapTotalRangeMarket(int[] result) => result.Sum() switch
     {
