@@ -72,12 +72,12 @@ public class Game
 
     private Market CreateMatchMarket() => new("GWMatch", new Dictionary<string, double>
     {
-        ["6"] = CalculateFairPrice(Math.Pow(6, 0) * 1 / _outcomeCount),
-        ["5"] = CalculateFairPrice(Math.Pow(6, 1) * 2 / _outcomeCount),
-        ["4"] = CalculateFairPrice(Math.Pow(6, 2) * 3 / _outcomeCount),
-        ["3"] = CalculateFairPrice(Math.Pow(6, 3) * 4 / _outcomeCount),
+        ["1"] = CalculateFairPrice(Math.Pow(6, 5) * 6 / _outcomeCount),
         ["2"] = CalculateFairPrice(Math.Pow(6, 4) * 5 / _outcomeCount),
-        ["1"] = CalculateFairPrice(Math.Pow(6, 5) * 6 / _outcomeCount)
+        ["3"] = CalculateFairPrice(Math.Pow(6, 3) * 4 / _outcomeCount),
+        ["4"] = CalculateFairPrice(Math.Pow(6, 2) * 3 / _outcomeCount),
+        ["5"] = CalculateFairPrice(Math.Pow(6, 1) * 2 / _outcomeCount),
+        ["6"] = CalculateFairPrice(Math.Pow(6, 0) * 1 / _outcomeCount),
     });
 
     private Market CreateOddEvenMarket()

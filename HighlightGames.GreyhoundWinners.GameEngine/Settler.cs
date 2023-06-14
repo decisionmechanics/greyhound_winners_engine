@@ -159,12 +159,19 @@ public static class Settler
     }
 
     public static string SettleTrapMostAnyMarket(int[] result) => SettleTrapMostMarket(result) == null ? "None" : "Any";
+    public static string SettleTrapMostAnyMarketValue(int[] result)
+    {
+        var most = SettleTrapMostMarket(result);
+        if (most == null)
+            return "None";
+        return most.ToString();
+    }
 
     public static string SettleTrapTotalExactMarket(int[] result) => result.Sum().ToString();
 
     public static string SettleTrapTotalOddEvenMarket(int[] result) => result.Sum() % 2 == 1 ? "Odd" : "Even";
 
-    public static string SettleTrapTotalPrimeMarket(int[] result) => new[] { 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(result.Sum()) ? "Yes" : "No";
+    public static string SettleTrapTotalPrimeMarket(int[] result) => new[] { 7, 11, 13, 17, 19, 23, 29, 31 }.Contains(result.Sum()) ? "Prime" : "Not Prime";
 
     public static string SettleTrapTotalRangeMarket(int[] result) => result.Sum() switch
     {
