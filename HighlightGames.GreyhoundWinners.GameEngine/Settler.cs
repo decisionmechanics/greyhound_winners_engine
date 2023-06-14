@@ -174,4 +174,12 @@ public static class Settler
         >= 27 and <= 36 => "27-36",
         _ => throw new ArgumentOutOfRangeException(nameof(result), "Trap numbers must sum to between 6 and 36"),
     };
+    
+    public static string SettleTrapTotalRangeReducedMarket(int[] result) => result.Sum() switch
+    {
+        6 => "6",
+        >= 7 and <= 21 => "7-21",
+        >= 22 and <= 36 => "22-36",
+        _ => throw new ArgumentOutOfRangeException(nameof(result), "Trap numbers must sum to between 6 and 36"),
+    };
 }

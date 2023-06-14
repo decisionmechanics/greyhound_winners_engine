@@ -64,9 +64,10 @@ namespace GreyhoundWinners.CompleteResults
             string traptotaloddeven = Settler.SettleTrapTotalOddEvenMarket(result);
             string traptotalPrime = Settler.SettleTrapTotalPrimeMarket(result);
             string traptotalRange = Settler.SettleTrapTotalRangeMarket(result);
+            string traptotalRangeReduced = Settler.SettleTrapTotalRangeReducedMarket(result);
 
 
-            return $"{string.Join("-", result.Select(x => x.ToString()))},{highLow},{oddEven},{match123456_3},{match333333_2},{sameTrap14},{sameTrap23},{sameTrap36},{trapMost},{trapMostAny},{trapTotalExact},{traptotaloddeven},{traptotalPrime},{traptotalRange}";
+            return $"{string.Join("-", result.Select(x => x.ToString()))},{highLow},{oddEven},{match123456_3},{match333333_2},{sameTrap14},{sameTrap23},{sameTrap36},{trapMost},{trapMostAny},{trapTotalExact},{traptotaloddeven},{traptotalPrime},{traptotalRange},{traptotalRangeReduced}";
         }
     }
 }

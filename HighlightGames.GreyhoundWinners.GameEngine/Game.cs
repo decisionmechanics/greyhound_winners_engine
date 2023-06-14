@@ -226,6 +226,13 @@ public class Game
             ["27-36"] = CalculateFairPrice(4501 / _outcomeCount)
         });
 
-        return new[] { exactMarket, oddEvenMarket, primeMarket, rangeMarket };
+        var rangeReducedMarket = new Market("GWTrapTotalRangeReduced", new Dictionary<string, double>
+        {
+            ["6"] = CalculateFairPrice(1 / _outcomeCount),
+            ["7-21"] = CalculateFairPrice(25493 / _outcomeCount),
+            ["22-36"] = CalculateFairPrice(21162 / _outcomeCount)
+        });
+        
+        return new[] { exactMarket, oddEvenMarket, primeMarket, rangeMarket, rangeReducedMarket };
     }
 }

@@ -107,6 +107,13 @@ IDictionary<string, decimal> trapTotalRangeMarketReturns = new Dictionary<string
     ["27-36"] = 0,
 };
 
+IDictionary<string, decimal> trapTotalRangeReducedMarketReturns = new Dictionary<string, decimal>
+{
+    ["6"] = 0,
+    ["7-21"] = 0,
+    ["22-36"] = 0,
+};
+
 IDictionary<string, decimal> catchAMatchMarketReturns = Enumerable.Range(2, 5).ToDictionary(x => x.ToString(), _ => 0m);
 
 IDictionary<string, decimal> playYourDogsRightWithoutInsuranceMarketReturns = new Dictionary<string, decimal>
@@ -145,13 +152,15 @@ for (int iteration = 0; iteration < iterations; iteration++)
     trapTotalOddEvenMarketReturns[Settler.SettleTrapTotalOddEvenMarket(result)] += 1;
     trapTotalPrimeMarketReturns[Settler.SettleTrapTotalPrimeMarket(result)] += 1;
     trapTotalRangeMarketReturns[Settler.SettleTrapTotalRangeMarket(result)] += 1;
+    trapTotalRangeReducedMarketReturns[Settler.SettleTrapTotalRangeReducedMarket(result)] += 1;
     
     for (int matchLength = 2; matchLength <= 6; matchLength++)
     {
         catchAMatchMarketReturns[matchLength.ToString()] += Settler.SettleCatchAMatchMarket(new[] { 1, 2, 3, 4, 5, 6}.Shuffle().Take(matchLength).ToArray(), result);
     }
 
-    char[] playYourDogsRightSelection = Enumerable.Range(0, 6).Select(_ => random.NextInt64(2) == 0 ? 'H' : 'L').ToArray();
+    // char[] playYourDogsRightSelection = Enumerable.Range(0, 6).Select(_ => random.NextInt64(2) == 0 ? 'H' : 'L').ToArray();
+    char[] playYourDogsRightSelection = { 'H', 'L', 'H', 'L', 'H', 'L' };
     playYourDogsRightWithoutInsuranceMarketReturns[Settler.SettlePlayYourDogsRightMarket(playYourDogsRightSelection, result, false).ToString()] += 1;
 }
 
@@ -167,6 +176,7 @@ Market trapTotalExactMarket = markets.Single(x => x.name == "GWTrapTotalExact");
 Market trapTotalOddEvenMarket = markets.Single(x => x.name == "GWTrapTotalOddEven");
 Market trapTotalPrimeMarket = markets.Single(x => x.name == "GWTrapTotalPrime");
 Market trapTotalRangeMarket = markets.Single(x => x.name == "GWTrapTotalRange");
+Market trapTotalRangeReducedMarket = markets.Single(x => x.name == "GWTrapTotalRangeReduced");
 IDictionary<string, Market> catchAMatchMarkets = Enumerable.Range(2, 5).ToDictionary(
     x => x.ToString(),
     x => markets.Single(y => y.name == $"GWCatchAMatch{x}")
@@ -245,6 +255,13 @@ foreach (string selection in trapTotalRangeMarketReturns.Keys)
 }
 
 Console.WriteLine(JsonSerializer.Serialize(trapTotalRangeMarketReturns));
+
+foreach (string selection in trapTotalRangeReducedMarketReturns.Keys)
+{
+    trapTotalRangeReducedMarketReturns[selection] *= (decimal)trapTotalRangeReducedMarket.selectionFairPrices[selection] / iterations;
+}
+
+Console.WriteLine(JsonSerializer.Serialize(trapTotalRangeReducedMarketReturns));
 
 foreach (string selection in catchAMatchMarketReturns.Keys)
 {
