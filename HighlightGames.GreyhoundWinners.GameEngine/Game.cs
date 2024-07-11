@@ -18,17 +18,17 @@ public class Game
 
     public IEnumerable<Market> GenerateMarkets() => new[]
     {
-        CreateRaceMarket(),
-        CreateMatchMarket(),
-        CreateSameTrapMarket(),
-        CreateHighLowMarket(),
-        CreateOddEvenMarket(),
-        CreateTrapMostMarket(),
-        CreateTrapMostAnyMarket(),
-        CreatePlayYourDogsRightMarket(false),
-        CreatePlayYourDogsRightMarket(true),
-
-    }.Concat(CreateTrapTotalMarkets()).Concat(CreateCatchAMatchMarkets());
+        CreateSuperMatchWinMarket(),
+        CreateSuperMatchWithABreakMarket(),
+        CreateCatchAMatchMarket(),
+        CreateTrapNumbersWinningMostHighLowMarket(),
+        CreateTrapNumbersWinningMostOddEvenMarket(),
+        CreateTrapNumbersWinningMostTopTrapMarket(),
+        CreateWinningTrapsTotalsTrapsTotalMarket(),
+        CreateWinningTrapsTotalsRangeMarket(),
+        CreateWinningTrapsTotalsSumMarket(),
+        CreatePlayYourDogsRightMarket()
+    };
 
     /* Private static methods */
 
@@ -37,24 +37,52 @@ public class Game
     private static int Factorial(int n) => n > 0 ? Enumerable.Range(1, n).Aggregate((x, y) => x * y) : 1;
 
     private static int CalculateCombinations(int n, int r) => Factorial(n) / Factorial(n - r) / Factorial(r);
-
-    private static int CalculatePermutations(int n, int r) => Factorial(n) / Factorial(n - r);
-
+    
     /* Private instance methods */
 
-    private Market CreateCatchAMatchMarket(int n) => new Market(
-        $"GWCatchAMatch{n}",
+    private Market CreateCatchAMatchMarket() => new(
+        "GWCatchAMatch",
         new Dictionary<string, double>
         {
-            ["1"] = CalculateFairPrice(CalculatePermutations(6, n) * Math.Pow(6, -n))
-        }
-    );
+            ["Crowded House"] = _outcomeCount / 720,
+            ["Threesome"] = _outcomeCount / 17136,
+            ["Foursome"] = _outcomeCount / 2436,
+            ["Five Up"] = _outcomeCount / 186,
+            ["Super Six"] = _outcomeCount / 6,
+            ["Six Going Up"] = _outcomeCount,
+            ["Six Coming Down"] = _outcomeCount,
+            ["Full Traps"] = _outcomeCount / 456,
+            ["Half Traps"] = _outcomeCount / 306,
+            ["Three Two"] = _outcomeCount / 8136,
+        });
 
-    private IEnumerable<Market> CreateCatchAMatchMarkets() => Enumerable.Range(2, 5).Select(CreateCatchAMatchMarket).ToList();
+    private Market CreatePlayYourDogsRightMarket() => new("GWPlayYourDogsRight", new Dictionary<string, double>());
     
-    private Market CreateHighLowMarket()
+    private Market CreateSuperMatchWinMarket() => new(
+        "GWSuperMatchWin",
+        new Dictionary<string, double>
+        {
+            ["6"] = _outcomeCount,
+            ["5"] = _outcomeCount / 12,
+            ["4"] = _outcomeCount / 108,
+            ["3"] = _outcomeCount / 864,
+            ["2"] = _outcomeCount / 6480,
+        });
+
+    private Market CreateSuperMatchWithABreakMarket() => new(
+        "GWSuperMatchWithABreak",
+        new Dictionary<string, double>
+        {
+            ["6"] = _outcomeCount / 1,
+            ["5"] = _outcomeCount / 36,
+            ["4"] = _outcomeCount / 540,
+            ["3"] = _outcomeCount / 4320,
+            ["2"] = _outcomeCount / 19440,
+        });
+
+    private Market CreateTrapNumbersWinningMostHighLowMarket()
     {
-        var highOutcomeCount = 
+        var highOutcomeCount =
             Math.Pow(3, 6) + Math.Pow(3, 1) * Math.Pow(3, 5) * CalculateCombinations(6, 1) + Math.Pow(3, 2) * Math.Pow(3, 4) * CalculateCombinations(6, 2);
 
         var highProbability = highOutcomeCount / _outcomeCount;
@@ -62,7 +90,7 @@ public class Game
         var lowProbability = highProbability;
         var equalProbability = 1 - highProbability - lowProbability;
 
-        return new Market("GWHighLow", new Dictionary<string, double>
+        return new Market("GWTrapNumbersWinningMostHighLow", new Dictionary<string, double>
         {
             ["High"] = CalculateFairPrice(highProbability),
             ["Low"] = CalculateFairPrice(lowProbability),
@@ -70,27 +98,16 @@ public class Game
         });
     }
 
-    private Market CreateMatchMarket() => new("GWMatch", new Dictionary<string, double>
+    private Market CreateTrapNumbersWinningMostOddEvenMarket()
     {
-        ["1"] = CalculateFairPrice(Math.Pow(6, 5) * 6 / _outcomeCount),
-        ["2"] = CalculateFairPrice(Math.Pow(6, 4) * 5 / _outcomeCount),
-        ["3"] = CalculateFairPrice(Math.Pow(6, 3) * 4 / _outcomeCount),
-        ["4"] = CalculateFairPrice(Math.Pow(6, 2) * 3 / _outcomeCount),
-        ["5"] = CalculateFairPrice(Math.Pow(6, 1) * 2 / _outcomeCount),
-        ["6"] = CalculateFairPrice(Math.Pow(6, 0) * 1 / _outcomeCount),
-    });
-
-    private Market CreateOddEvenMarket()
-    {
-        var highOutcomeCount = 
-            Math.Pow(3, 6) + Math.Pow(3, 1) * Math.Pow(3, 5) * CalculateCombinations(6, 1) + Math.Pow(3, 2) * Math.Pow(3, 4) * CalculateCombinations(6, 2);
+        var highOutcomeCount = Math.Pow(3, 6) + Math.Pow(3, 1) * Math.Pow(3, 5) * CalculateCombinations(6, 1) + Math.Pow(3, 2) * Math.Pow(3, 4) * CalculateCombinations(6, 2);
 
         var oddProbability = highOutcomeCount / _outcomeCount;
 
         var evenProbability = oddProbability;
         var equalProbability = 1 - oddProbability - evenProbability;
 
-        return new Market("GWOddEven", new Dictionary<string, double>
+        return new Market("GWTrapNumbersWinningMostOddEven", new Dictionary<string, double>
         {
             ["Odd"] = CalculateFairPrice(oddProbability),
             ["Even"] = CalculateFairPrice(evenProbability),
@@ -98,65 +115,7 @@ public class Game
         });
     }
 
-    private Market CreatePlayYourDogsRightMarket(bool insurance) => !insurance
-        ? new Market("GWPlayYourDogsRightWithoutInsurance", new Dictionary<string, double>
-        {
-            ["0"] = CalculateFairPrice(0.5),
-            ["1"] = CalculateFairPrice(0.4166666666666667),
-            ["2"] = CalculateFairPrice(0.24537037037037038),
-            ["3"] = CalculateFairPrice(0.14429012345679013),
-            ["4"] = CalculateFairPrice(0.08449074074074074),
-            ["5"] = CalculateFairPrice(0.04948988340192044),
-            ["6"] = CalculateFairPrice(0.03853737997256516)
-        })
-        : new Market("GWPlayYourDogsRightWithInsurance", new Dictionary<string, double>
-        {
-            ["0"] = CalculateFairPrice(0.4444444444444444),
-            ["1"] = CalculateFairPrice(0.4722222222222222),
-            ["2"] = CalculateFairPrice(0.2762345679012346),
-            ["3"] = CalculateFairPrice(0.1720679012345679),
-            ["4"] = CalculateFairPrice(0.10300925925925926),
-            ["5"] = CalculateFairPrice(0.06903720850480109),
-            ["6"] = CalculateFairPrice(0.03853737997256516)
-        });
-
-    private Market CreateRaceMarket()
-    {
-        var probability = 1.0 / 6;
-        var fairPrice = CalculateFairPrice(probability);
-
-        return new Market("GWRace", new Dictionary<string, double>
-        {
-            ["1"] = fairPrice,
-            ["2"] = fairPrice,
-            ["3"] = fairPrice,
-            ["4"] = fairPrice,
-            ["5"] = fairPrice,
-            ["6"] = fairPrice
-        });
-    }
-
-    private Market CreateSameTrapMarket() => new("GWSameTrap", new Dictionary<string, double>
-    {
-        ["5+"] = CalculateFairPrice((Math.Pow(6, 0) * 1 + Math.Pow(6, 1) * 2) / _outcomeCount),
-        ["4"] = CalculateFairPrice(Math.Pow(6, 2) * 3 / _outcomeCount),
-        ["3"] = CalculateFairPrice(Math.Pow(6, 3) * 4 / _outcomeCount),
-        ["2"] = CalculateFairPrice(Math.Pow(6, 4) * 5 / _outcomeCount)
-    });
-
-    private Market CreateTrapMostAnyMarket()
-    {
-        var trapProbability = MostFrequentTrapOutcomeCount / _outcomeCount;
-        var anyTrapProbability = trapProbability * 6;
-
-        return new Market("GWTrapMostAny", new Dictionary<string, double>
-        {
-            ["None"] = CalculateFairPrice(1 - anyTrapProbability),
-            ["Any"] = CalculateFairPrice(anyTrapProbability)
-        });
-    }
-
-    private Market CreateTrapMostMarket()
+    private Market CreateTrapNumbersWinningMostTopTrapMarket()
     {
         var selectionFairPrices = new Dictionary<string, double>();
 
@@ -166,12 +125,35 @@ public class Game
 
         for (var i = 1; i <= 6; i++) selectionFairPrices[i.ToString()] = CalculateFairPrice(trapProbability);
 
-        return new Market("GWTrapMost", selectionFairPrices);
+        var anyTrapProbability = trapProbability * 6;
+
+        selectionFairPrices["Any"] = CalculateFairPrice(anyTrapProbability);
+
+        return new Market("GWTrapNumbersWinningMostTopTrap", selectionFairPrices);
     }
 
-    private IEnumerable<Market> CreateTrapTotalMarkets()
-    {
-        var exactMarket = new Market("GWTrapTotalExact", new Dictionary<string, double>
+    private Market CreateWinningTrapsTotalsRangeMarket() => new(
+        "GWWinningTrapsTotalsRange",
+        new Dictionary<string, double>
+        {
+            ["6"] = CalculateFairPrice(1 / _outcomeCount),
+            ["7-16"] = CalculateFairPrice(6747 / _outcomeCount),
+            ["17-26"] = CalculateFairPrice(35407 / _outcomeCount),
+            ["27-36"] = CalculateFairPrice(4501 / _outcomeCount)
+        });
+
+    private Market CreateWinningTrapsTotalsSumMarket() => new(
+        "GWWinningTrapsTotalsSum",
+        new Dictionary<string, double>
+        {
+            ["Odd"] = CalculateFairPrice(23328 / _outcomeCount),
+            ["Even"] = CalculateFairPrice(23328 / _outcomeCount),
+            ["Prime"] = CalculateFairPrice(12690 / _outcomeCount)
+        });
+
+    private Market CreateWinningTrapsTotalsTrapsTotalMarket() => new(
+        "GWWinningTrapsTotalsTrapsTotal",
+        new Dictionary<string, double>
         {
             ["6"] = CalculateFairPrice(1 / _outcomeCount),
             ["7"] = CalculateFairPrice(6 / _outcomeCount),
@@ -205,34 +187,4 @@ public class Game
             ["35"] = CalculateFairPrice(6 / _outcomeCount),
             ["36"] = CalculateFairPrice(1 / _outcomeCount)
         });
-
-        var oddEvenMarket = new Market("GWTrapTotalOddEven", new Dictionary<string, double>
-        {
-            ["Odd"] = CalculateFairPrice(23328 / _outcomeCount),
-            ["Even"] = CalculateFairPrice(23328 / _outcomeCount)
-        });
-
-        var primeMarket = new Market("GWTrapTotalPrime", new Dictionary<string, double>
-        {
-            ["Yes"] = CalculateFairPrice(12690 / _outcomeCount),
-            ["No"] = CalculateFairPrice(33966 / _outcomeCount)
-        });
-
-        var rangeMarket = new Market("GWTrapTotalRange", new Dictionary<string, double>
-        {
-            ["6"] = CalculateFairPrice(1 / _outcomeCount),
-            ["7-16"] = CalculateFairPrice(6747 / _outcomeCount),
-            ["17-26"] = CalculateFairPrice(35407 / _outcomeCount),
-            ["27-36"] = CalculateFairPrice(4501 / _outcomeCount)
-        });
-
-        var rangeReducedMarket = new Market("GWTrapTotalRangeReduced", new Dictionary<string, double>
-        {
-            ["6"] = CalculateFairPrice(1 / _outcomeCount),
-            ["7-21"] = CalculateFairPrice(25493 / _outcomeCount),
-            ["22-36"] = CalculateFairPrice(21162 / _outcomeCount)
-        });
-        
-        return new[] { exactMarket, oddEvenMarket, primeMarket, rangeMarket, rangeReducedMarket };
-    }
 }

@@ -1,2 +1,2 @@
 namespace HighlightGames.GreyhoundWinners.GameEngine;
-public record Market(string name, IDictionary<string, double> selectionFairPrices);
+public record Market(string Name, IDictionary<string, double> SelectionFairPrices);
