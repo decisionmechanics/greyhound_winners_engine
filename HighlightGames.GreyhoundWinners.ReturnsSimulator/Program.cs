@@ -18,7 +18,7 @@ int[] selectedTraps = game.CreateGame(random).ToArray();
 
 var markets = game.GenerateMarkets();
 
-var marketReturns = markets.ToDictionary(m => m.Name, m => m.SelectionFairPrices.Keys.ToDictionary(s => s, _ => 0m));
+var marketReturns = markets.Where(m => !m.Name.StartsWith("GWPlayYourDogsRight")).ToDictionary(m => m.Name, m => m.SelectionFairPrices.Keys.ToDictionary(s => s, _ => 0m));
 
 var playYourDogsRightSelections = new Dictionary<string, Direction[]>
 {
@@ -29,6 +29,8 @@ var playYourDogsRightSelections = new Dictionary<string, Direction[]>
     ["LLLLLH"] = new[] { Direction.Lower, Direction.Lower, Direction.Lower, Direction.Lower, Direction.Lower, Direction.Higher },
     ["LLLLLL"] = new[] { Direction.Lower, Direction.Lower, Direction.Lower, Direction.Lower, Direction.Lower, Direction.Lower }
 };
+
+marketReturns["GWPlayYourDogsRight"] = new Dictionary<string, decimal>();
 
 foreach (var selection in playYourDogsRightSelections.Keys)
 {

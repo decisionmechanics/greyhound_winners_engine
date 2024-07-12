@@ -26,9 +26,8 @@ public class Game
         CreateTrapNumbersWinningMostTopTrapMarket(),
         CreateWinningTrapsTotalsTrapsTotalMarket(),
         CreateWinningTrapsTotalsRangeMarket(),
-        CreateWinningTrapsTotalsSumMarket(),
-        CreatePlayYourDogsRightMarket()
-    };
+        CreateWinningTrapsTotalsSumMarket()
+    }.Concat(Enumerable.Range(1, 5).Select(CreatePlayYourDogsRightMarket));
 
     /* Private static methods */
 
@@ -56,7 +55,45 @@ public class Game
             ["Three Two"] = _outcomeCount / 8136,
         });
 
-    private Market CreatePlayYourDogsRightMarket() => new("GWPlayYourDogsRight", new Dictionary<string, double>());
+    private Market CreatePlayYourDogsRightMarket(int group) => new($@"GWPlayYourDogsRightGroup{group}", group switch
+    {
+        1 => new Dictionary<string, double>
+        {
+            ["6"] = 8,
+            ["5"] = 5,
+            ["4"] = 3,
+            ["3"] = 2
+        },
+        2 => new Dictionary<string, double>
+        {
+            ["6"] = 13,
+            ["5"] = 5,
+            ["4"] = 3,
+            ["3"] = 2
+        },
+        3 => new Dictionary<string, double>
+        {
+            ["6"] = 40,
+            ["5"] = 9,
+            ["4"] = 3,
+            ["3"] = 2
+        },
+        4 => new Dictionary<string, double>
+        {
+            ["6"] = 400,
+            ["5"] = 30,
+            ["4"] = 5,
+            ["3"] = 2
+        },
+        5 => new Dictionary<string, double>
+        {
+            ["6"] = 10_000,
+            ["5"] = 250,
+            ["4"] = 20,
+            ["3"] = 3
+        },
+        _ => throw new ArgumentOutOfRangeException(nameof(group))
+    });
     
     private Market CreateSuperMatchWinMarket() => new(
         "GWSuperMatchWin",
