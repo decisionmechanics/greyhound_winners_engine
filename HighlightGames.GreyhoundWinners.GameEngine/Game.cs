@@ -174,9 +174,8 @@ public class Game
         new Dictionary<string, double>
         {
             ["6"] = CalculateFairPrice(1 / _outcomeCount),
-            ["7-16"] = CalculateFairPrice(6747 / _outcomeCount),
-            ["17-26"] = CalculateFairPrice(35407 / _outcomeCount),
-            ["27-36"] = CalculateFairPrice(4501 / _outcomeCount)
+            ["7-21"] = CalculateFairPrice(25493 / _outcomeCount),
+            ["22-36"] = CalculateFairPrice(21162 / _outcomeCount)
         });
 
     private Market CreateWinningTrapsTotalsSumMarket() => new(

@@ -200,9 +200,8 @@ public class Settler
         var trapsTotalRange = result.Sum() switch
         {
             6 => "6",
-            >= 7 and <= 16 => "7-16",
-            <= 26 => "17-26",
-            <= 36 => "27-36",
+            >= 7 and <= 21 => "7-21",
+            <= 36 => "22-36",
             _ => throw new ArgumentOutOfRangeException(nameof(result), "Trap numbers must sum to between 6 and 36"),
         };
         
