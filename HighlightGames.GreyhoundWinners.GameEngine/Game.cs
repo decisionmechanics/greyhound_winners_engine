@@ -18,6 +18,7 @@ public class Game
 
     public IEnumerable<Market> GenerateMarkets() => new[]
     {
+        CreateSyntheticRaceMarket(),
         CreateSuperMatchWinMarket(),
         CreateSuperMatchWithABreakMarket(),
         CreateCatchAMatchMarket(),
@@ -36,6 +37,18 @@ public class Game
     private static int Factorial(int n) => n > 0 ? Enumerable.Range(1, n).Aggregate((x, y) => x * y) : 1;
 
     private static int CalculateCombinations(int n, int r) => Factorial(n) / Factorial(n - r) / Factorial(r);
+    
+    private static Market CreateSyntheticRaceMarket() => new(
+        "GWSyntheticRace",
+        new Dictionary<string, double>
+        {
+            ["1"] = 6,
+            ["2"] = 6,
+            ["3"] = 6,
+            ["4"] = 6,
+            ["5"] = 6,
+            ["6"] = 6
+        });
     
     /* Private instance methods */
 
@@ -116,7 +129,7 @@ public class Game
             ["3"] = _outcomeCount / 4320,
             ["2"] = _outcomeCount / 19440,
         });
-
+    
     private Market CreateTrapNumbersWinningMostHighLowMarket()
     {
         var highOutcomeCount =

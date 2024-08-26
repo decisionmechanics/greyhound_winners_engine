@@ -43,6 +43,11 @@ for (var iteration = 0; iteration < iterations; iteration++)
 {
     var result = game.CreateGame(random).ToArray();
 
+    foreach (var settlement in settler.SettleSyntheticRaceMarket(random.Next(1, 7)))
+    {
+        marketReturns[settlement.Market][settlement.Selection] += settlement.Dividends * settlement.UnitAmount;
+    }
+    
     foreach (var settlement in settler.SettleSuperMatchWinMarket(selectedTraps, result))
     {
         marketReturns[settlement.Market][settlement.Selection] += settlement.Dividends * settlement.UnitAmount;

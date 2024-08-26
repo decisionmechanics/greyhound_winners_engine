@@ -1,5 +1,7 @@
 namespace HighlightGames.GreyhoundWinners.GameEngine;
 
+using System.Collections;
+
 public enum Direction {
     Higher,
     Lower
@@ -138,6 +140,8 @@ public class Settler
     public IEnumerable<Settlement> SettleSuperMatchWithABreakMarket(int[] selection, int[] result) =>
         Enumerable.Range(2, 5).Select(l => SettleSuperMatchWithABreakMarket(l, selection, result)).Where(s => s.Dividends > 0).ToList();
 
+    public IEnumerable<Settlement> SettleSyntheticRaceMarket(int selection) => [new Settlement("GWSyntheticRace", selection.ToString(), 1, 6)];
+    
     public IEnumerable<Settlement> SettleTrapNumbersWinningMostHighLowMarket(int[] result)
     {
         int highTrapCount = result.Count(t => t >= 4);
