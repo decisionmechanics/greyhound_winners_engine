@@ -57,15 +57,15 @@ public class Game
         new Dictionary<string, double>
         {
             ["Crowded House"] = _outcomeCount / 720,
-            ["Threesome"] = _outcomeCount / 17136,
-            ["Foursome"] = _outcomeCount / 2436,
-            ["Five Up"] = _outcomeCount / 186,
+            ["Threesome"] = _outcomeCount / 14700,
+            ["Foursome"] = _outcomeCount / 2250,
+            ["Five Up"] = _outcomeCount / 180,
             ["Super Six"] = _outcomeCount / 6,
             ["Six Going Up"] = _outcomeCount,
             ["Six Coming Down"] = _outcomeCount,
-            ["Full Traps"] = _outcomeCount / 456,
-            ["Half Traps"] = _outcomeCount / 306,
-            ["Three Two"] = _outcomeCount / 8136,
+            ["Full Traps"] = _outcomeCount / 450,
+            ["Half Traps"] = _outcomeCount / 300,
+            ["Three Two"] = _outcomeCount / 7200,
         });
 
     private Market CreatePlayYourDogsRightMarket(int group) => new($@"GWPlayYourDogsRightGroup{group}", group switch

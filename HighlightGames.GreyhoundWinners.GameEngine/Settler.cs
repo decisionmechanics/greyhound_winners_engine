@@ -53,22 +53,22 @@ public class Settler
             settlements.Add(new Settlement("GWCatchAMatch", "Crowded House", 1, (decimal)_catchAMatchMarketPrices["Crowded House"]));
         }
 
-        if (trapCounts[0] >= 3)
+        if (trapCounts[0] == 3)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Threesome", 1, (decimal)_catchAMatchMarketPrices["Threesome"]));
         }
 
-        if (trapCounts[0] >= 4)
+        if (trapCounts[0] == 4)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Foursome", 1, (decimal)_catchAMatchMarketPrices["Foursome"]));
         }
 
-        if (trapCounts[0] >= 5)
+        if (trapCounts[0] == 5)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Five Up", 1, (decimal)_catchAMatchMarketPrices["Five Up"]));
         }
 
-        if (trapCounts[0] >= 6)
+        if (trapCounts[0] == 6)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Super Six", 1, (decimal)_catchAMatchMarketPrices["Super Six"]));
         }
@@ -83,17 +83,17 @@ public class Settler
             settlements.Add(new Settlement("GWCatchAMatch", "Six Coming Down", 1, (decimal)_catchAMatchMarketPrices["Six Coming Down"]));
         }
 
-        if (trapCounts[0] == 6 || (trapCounts[0] == 4 && trapCounts[1] == 2))
+        if (trapCounts[0] == 4 && trapCounts[1] == 2)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Full Traps", 1, (decimal)_catchAMatchMarketPrices["Full Traps"]));
         }
 
-        if (trapCounts[0] == 6 || (trapCounts[0] == 3 && trapCounts[1] == 3))
+        if (trapCounts[0] == 3 && trapCounts[1] == 3)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Half Traps", 1, (decimal)_catchAMatchMarketPrices["Half Traps"]));
         }
 
-        if (trapCounts[0] >= 5 || (trapCounts[0] >= 3 && trapCounts[1] >= 2))
+        if (trapCounts[0] == 3 && trapCounts[1] == 2)
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Three Two", 1, (decimal)_catchAMatchMarketPrices["Three Two"]));
         }
