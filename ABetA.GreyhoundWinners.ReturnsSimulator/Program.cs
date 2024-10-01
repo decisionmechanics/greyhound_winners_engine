@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using MathNet.Numerics.Random;
-using HighlightGames.GreyhoundWinners.GameEngine;
+using ABetA.GreyhoundWinners.GameEngine;
+
 
 if (args.Length != 1)
 {

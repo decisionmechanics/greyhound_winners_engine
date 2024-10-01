@@ -1,4 +1,4 @@
-﻿namespace HighlightGames.GreyhoundWinners.GameEngine;
+﻿namespace ABetA.GreyhoundWinners.GameEngine;
 
 public class Game
 {

@@ -1,7 +1,6 @@
 ﻿using System.Text.Encodings.Web;
 using System.Text.Json;
-
-using HighlightGames.GreyhoundWinners.GameEngine;
+using ABetA.GreyhoundWinners.GameEngine;
 
 var game = new Game();
 

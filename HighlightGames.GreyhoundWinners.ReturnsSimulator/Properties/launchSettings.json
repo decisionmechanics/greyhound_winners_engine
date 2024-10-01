@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "HighlightGames.GreyhoundWinners.ReturnsSimulator": {
-      "commandName": "Project",
-      "commandLineArgs": "50"
-    }
-  }
-}

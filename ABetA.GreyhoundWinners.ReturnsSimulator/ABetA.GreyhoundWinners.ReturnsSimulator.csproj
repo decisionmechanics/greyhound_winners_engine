@@ -6,16 +6,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>ReturnsSimulator</AssemblyName>
-        <AssemblyVersion>1.0.9.0</AssemblyVersion>
+        <AssemblyVersion>1.0.18.0</AssemblyVersion>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\HighlightGames.GreyhoundWinners.GameEngine\HighlightGames.GreyhoundWinners.GameEngine.csproj" />
+      <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+      <ProjectReference Include="..\ABetA.GreyhoundWinners.GameEngine\ABetA.GreyhoundWinners.GameEngine.csproj" />
     </ItemGroup>
 
 </Project>

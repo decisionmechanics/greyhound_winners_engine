@@ -6,12 +6,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>MarketDumper</AssemblyName>
-        <AssemblyVersion>1.0.10.0</AssemblyVersion>
+        <AssemblyVersion>1.0.18.0</AssemblyVersion>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\HighlightGames.GreyhoundWinners.GameEngine\HighlightGames.GreyhoundWinners.GameEngine.csproj" />
+      <ProjectReference Include="..\ABetA.GreyhoundWinners.GameEngine\ABetA.GreyhoundWinners.GameEngine.csproj" />
     </ItemGroup>
 
 </Project>
