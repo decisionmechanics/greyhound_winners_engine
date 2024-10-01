@@ -48,31 +48,6 @@ public class Settler
 
         ICollection<Settlement> settlements = new List<Settlement>();
 
-        if (trapCounts.Length == 6)
-        {
-            settlements.Add(new Settlement("GWCatchAMatch", "Crowded House", 1, (decimal)_catchAMatchMarketPrices["Crowded House"]));
-        }
-
-        if (trapCounts[0] == 3)
-        {
-            settlements.Add(new Settlement("GWCatchAMatch", "Threesome", 1, (decimal)_catchAMatchMarketPrices["Threesome"]));
-        }
-
-        if (trapCounts[0] == 4)
-        {
-            settlements.Add(new Settlement("GWCatchAMatch", "Foursome", 1, (decimal)_catchAMatchMarketPrices["Foursome"]));
-        }
-
-        if (trapCounts[0] == 5)
-        {
-            settlements.Add(new Settlement("GWCatchAMatch", "Five Up", 1, (decimal)_catchAMatchMarketPrices["Five Up"]));
-        }
-
-        if (trapCounts[0] == 6)
-        {
-            settlements.Add(new Settlement("GWCatchAMatch", "Super Six", 1, (decimal)_catchAMatchMarketPrices["Super Six"]));
-        }
-
         if (result.Zip(Enumerable.Range(1, 6)).All(x => x.First == x.Second))
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Six Going Up", 1, (decimal)_catchAMatchMarketPrices["Six Going Up"]));
@@ -81,6 +56,11 @@ public class Settler
         if (result.Zip(Enumerable.Range(1, 6).Reverse()).All(x => x.First == x.Second))
         {
             settlements.Add(new Settlement("GWCatchAMatch", "Six Coming Down", 1, (decimal)_catchAMatchMarketPrices["Six Coming Down"]));
+        }
+        
+        if (trapCounts.Length == 6)
+        {
+            settlements.Add(new Settlement("GWCatchAMatch", "Crowded House", 1, (decimal)_catchAMatchMarketPrices["Crowded House"]));
         }
 
         if (trapCounts[0] == 4 && trapCounts[1] == 2)
@@ -98,7 +78,27 @@ public class Settler
             settlements.Add(new Settlement("GWCatchAMatch", "Three Two", 1, (decimal)_catchAMatchMarketPrices["Three Two"]));
         }
 
-        return settlements;
+        if (trapCounts[0] == 6)
+        {
+            settlements.Add(new Settlement("GWCatchAMatch", "Super Six", 1, (decimal)_catchAMatchMarketPrices["Super Six"]));
+        }
+        
+        if (trapCounts[0] == 5)
+        {
+            settlements.Add(new Settlement("GWCatchAMatch", "Five Up", 1, (decimal)_catchAMatchMarketPrices["Five Up"]));
+        }
+        
+        if (trapCounts[0] == 4)
+        {
+            settlements.Add(new Settlement("GWCatchAMatch", "Foursome", 1, (decimal)_catchAMatchMarketPrices["Foursome"]));
+        }
+        
+        if (trapCounts[0] == 3)
+        {
+            settlements.Add(new Settlement("GWCatchAMatch", "Threesome", 1, (decimal)_catchAMatchMarketPrices["Threesome"]));
+        }
+
+        return settlements.Take(1).ToList();
     }
 
     public IEnumerable<Settlement> SettlePlayYourDogsRightMarket(Direction[] selection, int[] result)

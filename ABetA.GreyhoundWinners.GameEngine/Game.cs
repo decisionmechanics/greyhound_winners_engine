@@ -56,9 +56,9 @@ public class Game
         "GWCatchAMatch",
         new Dictionary<string, double>
         {
-            ["Crowded House"] = _outcomeCount / 720,
-            ["Threesome"] = _outcomeCount / 14700,
-            ["Foursome"] = _outcomeCount / 2250,
+            ["Crowded House"] = _outcomeCount / 718,
+            ["Threesome"] = _outcomeCount / 7200,
+            ["Foursome"] = _outcomeCount / 1800,
             ["Five Up"] = _outcomeCount / 180,
             ["Super Six"] = _outcomeCount / 6,
             ["Six Going Up"] = _outcomeCount,
