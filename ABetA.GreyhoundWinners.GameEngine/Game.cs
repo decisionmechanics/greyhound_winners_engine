@@ -37,7 +37,7 @@ public class Game
     private static int Factorial(int n) => n > 0 ? Enumerable.Range(1, n).Aggregate((x, y) => x * y) : 1;
 
     private static int CalculateCombinations(int n, int r) => Factorial(n) / Factorial(n - r) / Factorial(r);
-
+    
     private static Market CreateSyntheticRaceMarket() => new(
         "GWSyntheticRace",
         new Dictionary<string, double>
@@ -49,7 +49,7 @@ public class Game
             ["5"] = 6,
             ["6"] = 6
         });
-
+    
     /* Private instance methods */
 
     private Market CreateCatchAMatchMarket() => new(
@@ -57,15 +57,15 @@ public class Game
         new Dictionary<string, double>
         {
             ["Crowded House"] = _outcomeCount / 720,
-            ["Threesome"] = _outcomeCount / 17136,
-            ["Foursome"] = _outcomeCount / 2436,
-            ["Five Up"] = _outcomeCount / 186,
+            ["Threesome"] = _outcomeCount / 14700,
+            ["Foursome"] = _outcomeCount / 2250,
+            ["Five Up"] = _outcomeCount / 180,
             ["Super Six"] = _outcomeCount / 6,
             ["Six Going Up"] = _outcomeCount,
             ["Six Coming Down"] = _outcomeCount,
-            ["Full Traps"] = _outcomeCount / 456,
-            ["Half Traps"] = _outcomeCount / 306,
-            ["Three Two"] = _outcomeCount / 8136,
+            ["Full Traps"] = _outcomeCount / 450,
+            ["Half Traps"] = _outcomeCount / 300,
+            ["Three Two"] = _outcomeCount / 7200,
         });
 
     private Market CreatePlayYourDogsRightMarket(int group) => new($@"GWPlayYourDogsRightGroup{group}", group switch
@@ -107,7 +107,7 @@ public class Game
         },
         _ => throw new ArgumentOutOfRangeException(nameof(group))
     });
-
+    
     private Market CreateSuperMatchWinMarket() => new(
         "GWSuperMatchWin",
         new Dictionary<string, double>
@@ -129,7 +129,7 @@ public class Game
             ["3"] = _outcomeCount / 4320,
             ["2"] = _outcomeCount / 19440,
         });
-
+    
     private Market CreateTrapNumbersWinningMostHighLowMarket()
     {
         var highOutcomeCount =
