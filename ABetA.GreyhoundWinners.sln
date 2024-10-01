@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABetA.GreyhoundWinners.GameEngine", "ABetA.GreyhoundWinners.GameEngine\ABetA.GreyhoundWinners.GameEngine.csproj", "{AACAC32A-E995-4E37-8D8F-469FAE51E100}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABetA.GreyhoundWinners.MarketDumper", "ABetA.GreyhoundWinners.MarketDumper\ABetA.GreyhoundWinners.MarketDumper.csproj", "{A0677C36-C564-4A64-82A3-9211AAB9C95D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABetA.GreyhoundWinners.ReturnsSimulator", "ABetA.GreyhoundWinners.ReturnsSimulator\ABetA.GreyhoundWinners.ReturnsSimulator.csproj", "{032F3029-B448-4EEC-AB49-6E32AE2B71A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AACAC32A-E995-4E37-8D8F-469FAE51E100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AACAC32A-E995-4E37-8D8F-469FAE51E100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AACAC32A-E995-4E37-8D8F-469FAE51E100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AACAC32A-E995-4E37-8D8F-469FAE51E100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0677C36-C564-4A64-82A3-9211AAB9C95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0677C36-C564-4A64-82A3-9211AAB9C95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0677C36-C564-4A64-82A3-9211AAB9C95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0677C36-C564-4A64-82A3-9211AAB9C95D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70CAED27-4028-43FD-B6CA-D5C1344BD96D}
+	EndGlobalSection
+EndGlobal
