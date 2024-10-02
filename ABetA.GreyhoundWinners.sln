@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABetA.GreyhoundWinners.Mark
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABetA.GreyhoundWinners.ReturnsSimulator", "ABetA.GreyhoundWinners.ReturnsSimulator\ABetA.GreyhoundWinners.ReturnsSimulator.csproj", "{032F3029-B448-4EEC-AB49-6E32AE2B71A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABetA.GreyhoundWinners.GameEngine.Test", "ABetA.GreyhoundWinners.GameEngine.Test\ABetA.GreyhoundWinners.GameEngine.Test.csproj", "{65D0385E-98BE-40D8-BDFC-1832CBBB8F7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{032F3029-B448-4EEC-AB49-6E32AE2B71A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D0385E-98BE-40D8-BDFC-1832CBBB8F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D0385E-98BE-40D8-BDFC-1832CBBB8F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D0385E-98BE-40D8-BDFC-1832CBBB8F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D0385E-98BE-40D8-BDFC-1832CBBB8F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
